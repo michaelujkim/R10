@@ -3,10 +3,12 @@ import PropTypes from "prop-types";
 import { Platform, StyleSheet, Text, View, ScrollView, Image } from "react-native";
 
 import { styles } from "./styles";
-const Schedule = ({ list, isLoading }) => (
+import { EventList } from "../../components/EventList"
+const Schedule = ({ list, isLoading }) => {
+  return (<View>
+    <EventList data={list} />
+  </View>)
+};
 
-  <View>
-    <Text></Text>
-  </View>
-);
-export default Schedule;
+
+export default Schedule
