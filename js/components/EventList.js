@@ -1,19 +1,23 @@
 
 import React from "react";
 import PropTypes from "prop-types";
-import { SectionList, ListItem, Header } from "react-native";
+import { SectionList, ListItem, Header, View, Text } from "react-native";
 
 
 
-const EventList = ({ data, isLoading }) => (
+export const EventList = ({ data, isLoading }) => {
+  console.log(data);
+  return (< SectionList
+    renderItem={({ item }) =>
+      <View>
+        <Text title={item.title} />
+      </View>}
+    keyExtractor={(item, index) => index}
+    renderSectionHeader={({ section }) => (
+      <Text>title={section.title}</Text>
+    )}
+    sections={data}
+  />)
+}
 
-  <SectionList
-    renderItem={({ item }) => <ListItem title={item} />}
-    renderSectionHeader={({ section }) => <Header title={section.title} />}
-    sections={[ // homogeneous rendering between sections
-      { data: [data] }]}
-  />
-)
 
-
-export default EventList

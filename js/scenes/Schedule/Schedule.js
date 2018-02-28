@@ -5,9 +5,10 @@ import { Platform, StyleSheet, Text, View, ScrollView, Image } from "react-nativ
 import { styles } from "./styles";
 import { EventList } from "../../components/EventList"
 const Schedule = ({ list, isLoading }) => {
-  return (<View>
+  console.log(list)
+  return (
     <EventList data={list} />
-  </View>)
+  )
 };
 
 

@@ -15,16 +15,10 @@ class ScheduleContainer extends Component {
   }
   static propTypes = {};
   componentDidMount() {
-    this.setState({ isLoading: true })
+
     this.props.dispatch(fetchSchedule());
   }
-  constructor() {
-    super();
-    this.state = {
-      sessions: [],
-      isLoading: false
-    };
-  }
+
 
 
   render() {

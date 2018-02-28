@@ -46,7 +46,7 @@ export default (
       return { ...state, isLoading: true, error: "" };
     }
     case GET_SCHEDULE: {
-      return { ...state, isLoading: false, items: action.payload, error: "" };
+      return { ...state, isLoading: false, sessions: action.payload, error: "" };
     }
     case GET_SCHEDULE_ERROR: {
       return { ...state, isLoading: false, error: action.payload };
