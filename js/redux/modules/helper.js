@@ -12,3 +12,11 @@ export const formatSessionData = (sessions) => {
     return acc;
   }, []).sort((a, b) => a.title - b.title);
 };
+export const formatUnixDate = date => {
+  const newDate = new Date(date * 1000);
+  const hours = newDate.getHours();
+  const minutes = newDate.getMinutes();
+  return `${hours > 12 ? hours - 12 : hours}:${
+    minutes === 0 ? "00" : minutes
+    } ${hours > 12 ? "PM" : "AM"}`;
+};

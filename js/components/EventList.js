@@ -2,7 +2,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { SectionList, ListItem, Header, View, Text } from "react-native";
-
+import { formatUnixDate } from "../redux/modules/helper";
 
 
 export const EventList = ({ data, isLoading }) => {
@@ -10,11 +10,11 @@ export const EventList = ({ data, isLoading }) => {
   return (< SectionList
     renderItem={({ item }) =>
       <View>
-        <Text title={item.title} />
+        <Text>{item.title}</Text>
       </View>}
     keyExtractor={(item, index) => index}
     renderSectionHeader={({ section }) => (
-      <Text>title={section.title}</Text>
+      <Text>{formatUnixDate(section.title)}</Text>
     )}
     sections={data}
   />)
