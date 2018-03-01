@@ -22,7 +22,7 @@ const {
 import { Text, View } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
 
-class NavigationLayout extends Component {
+class Nav extends Component {
   render() {
     return (
       <TabNavigation
@@ -96,4 +96,4 @@ class NavigationLayout extends Component {
   }
 }
 
-export default NavigationLayout;
+export default Nav;

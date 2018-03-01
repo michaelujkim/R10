@@ -1,14 +1,14 @@
 import { createRouter } from "@expo/ex-navigation";
 
 import About from "../scenes/About";
-import NavigationLayout from "./NavigationLayout";
+import Nav from "./Nav";
 import Schedule from "../scenes/Schedule";
 import Faves from "../scenes/Faves";
 
 import Session from "../scenes/Session";
 const Router = createRouter(() => ({
   about: () => About,
-  layout: () => NavigationLayout,
+  layout: () => Nav,
   schedule: () => Schedule,
   session: () => Session,
   faves: () => Faves
