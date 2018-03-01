@@ -16,7 +16,7 @@ export const queryFaves = () => {
 export const createFave = (id) => {
 
   realm.write(() => {
-    ream.create("Fave", {
+    realm.create("Fave", {
       id: id,
       faved_on: new Date()
     })

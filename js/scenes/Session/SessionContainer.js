@@ -8,19 +8,19 @@ import { connect } from "react-redux";
 import { fetchSchedule } from "../../redux/modules/schedule";
 
 class SessionContainer extends Component {
-
+  
   static propTypes = {};
   componentDidMount() {
-
+    fetch("https://r10app-95fea.firebaseio.com/sessions.json").then(r => r.json());
 
   }
 
 
 
   render() {
+    console.log(this.props.route.params.sessionData)
 
-
-    return <Session />
+    return <Session list={this.props.route.params.sessionData} />
   }
 
 
