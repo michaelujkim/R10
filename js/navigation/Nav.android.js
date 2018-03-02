@@ -32,6 +32,7 @@ class Nav extends React.Component {
           renderTitle={isSelected => this._renderTitle("Schedule", isSelected)}
         >
           <StackNavigation
+            navigatorUID="schedule"
             id="schedule"
             initialRoute={Router.getRoute("schedule")}
           />

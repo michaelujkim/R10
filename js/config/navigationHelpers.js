@@ -3,6 +3,7 @@ import Store from "../redux/store";
 import Router from "../navigation/routes";
 
 export const goToSession = (currentNavigatorUID, sessionData) => {
+  console.log(sessionData);
   Store.dispatch(
     NavigationActions.push(
       currentNavigatorUID,
@@ -12,6 +13,9 @@ export const goToSession = (currentNavigatorUID, sessionData) => {
 };
 export const goToSpeaker = speakerData => {
   Store.dispatch(
-    NavigationActions.push("root", Router.getRoute("speaker", { speakerData }))
+    NavigationActions.push(
+      "topstack",
+      Router.getRoute("speaker", { speakerData })
+    )
   );
 };
