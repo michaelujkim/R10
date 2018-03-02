@@ -14,9 +14,12 @@ const Speaker = ({ list }) => {
   console.log(list);
   return (
     <View>
-      <Text>{list}</Text>
-      <Text>{list}</Text>
-      <Text>{list}</Text>
+      <Text>{list.bio}</Text>
+      <Text>{list.name}</Text>
+      <Image
+        style={{ height: 100, width: 100 }}
+        source={{ uri: `${list.image}` }}
+      />
     </View>
   );
 };

@@ -11,7 +11,7 @@ import {
   TouchableOpacity
 } from "react-native";
 import { goToSpeaker } from "../../config/navigationHelpers.js";
-const Session = ({ list }) => {
+const Session = ({ list, speakerData }) => {
   return (
     <View>
       <Text>{list.location}</Text>
@@ -21,7 +21,7 @@ const Session = ({ list }) => {
           goToSpeaker("speaker");
         }}
       >
-        <Text>{list.speaker}</Text>
+        <Text>{speakerData.name}</Text>
       </TouchableOpacity>
       <Text>{list.session_id}</Text>
     </View>

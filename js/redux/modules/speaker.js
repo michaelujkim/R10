@@ -1,4 +1,4 @@
-import { formatSessionData } from "./helper.js";
+import { formatDataObject } from "./helper.js";
 
 //actions
 
@@ -22,13 +22,13 @@ const getSpeakerError = error => ({
   payload: error
 });
 //async action creator
-const sessions = fetch(`${SPEAKER_URL}`).then(r => r.json());
 
 export const fetchSpeakers = speakerId => dispatch => {
-  dispatch(getSpeakersLoading());
-  sessions
+  dispatch(getSpeakerLoading());
+  fetch(`${SPEAKER_URL}?orderBy="speaker_id"&equalTo"${speakerId}"`)
+    .then(r => r.json())
     .then(response => {
-      dispatch(getSpeaker(response));
+      dispatch(getSpeaker(formatDataObject(response)));
     })
     .catch(error => dispatch(getSpeakerError(error)));
 };

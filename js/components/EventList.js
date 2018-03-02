@@ -14,7 +14,6 @@ import Icon from "react-native-vector-icons/Ionicons";
 import { goToSession } from "../config/navigationHelpers";
 
 export const EventList = ({ data, isLoading }) => {
-  console.log(data);
   return (
     <SectionList
       renderItem={({ item }) => (

@@ -7,18 +7,22 @@ import { fetchSpeakers } from "../../redux/modules/speaker";
 
 class SpeakerContainer extends Component {
   static propTypes = {};
-  // componentDidMount() {
-  //   this.props.dispatch();
-  // }
+  constructor() {
+    super();
+    this.state = {
+      speakers: []
+    };
+  }
+
   render() {
-    return <Speaker list={this.props.route.params.speaker} />;
+    return <Speaker list={this.props.speakers} />;
   }
 }
 
 const mapStateToProps = state => ({
   isLoading: state.speakers.isLoading,
-  speaker: state.speakers.speaker,
+  speakers: state.speakers.speakers,
   error: state.speakers.error
 });
 
-export default SpeakerContainer;
+export default connect(mapStateToProps)(SpeakerContainer);
