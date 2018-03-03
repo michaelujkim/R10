@@ -1,32 +1,26 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
-import Schedule from "./Faves";
+import Faves from "./Faves";
 import { connect } from "react-redux";
 import { fetchSchedule } from "../../redux/modules/schedule";
+import { queryFaves } from "../../config/models";
 
 class FavesContainer extends Component {
   static route = {
     navigationBar: {
-      title: "Schedule"
+      title: "Faves"
     }
   };
   static propTypes = {};
   componentDidMount() {
-    this.props.dispatch(fetchSchedule());
+    queryFaves();
   }
 
   render() {
-    return (
-      <Schedule list={this.props.sessions} isloading={this.props.isLoading} />
-    );
+    console.log(queryFaves());
+    return <Faves />;
   }
 }
 
-const mapStateToProps = state => ({
-  isLoading: state.schedule.isLoading,
-  sessions: state.schedule.sessions,
-  error: state.schedule.error
-});
-
-export default connect(mapStateToProps)(FavesContainer);
+export default FavesContainer;
