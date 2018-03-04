@@ -11,6 +11,8 @@ import {
   TouchableOpacity
 } from "react-native";
 import { goToSpeaker } from "../../config/navigationHelpers.js";
+import Icon from "react-native-vector-icons/Ionicons";
+import { createFave, deleteFave } from "../../config/models";
 const Session = ({ list, speakerData }) => {
   return (
     <View>
@@ -24,6 +26,30 @@ const Session = ({ list, speakerData }) => {
         <Text>{speakerData.name}</Text>
       </TouchableOpacity>
       <Text>{list.session_id}</Text>
+      <TouchableOpacity
+        onPress={() => {
+          createFave(list.session_id);
+        }}
+      >
+        {Platform.OS === "ios" && (
+          <Icon style={{ color: "red" }} size={24} name={"ios-heart"} />
+        )}
+        {Platform.OS === "android" && (
+          <Icon style={{ color: "red" }} size={24} name={"md-heart"} />
+        )}
+      </TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => {
+          deleteFave(list.session_id);
+        }}
+      >
+        {Platform.OS === "ios" && (
+          <Icon style={{ color: "black" }} size={24} name={"ios-close"} />
+        )}
+        {Platform.OS === "android" && (
+          <Icon style={{ color: "black" }} size={24} name={"md-close"} />
+        )}
+      </TouchableOpacity>
     </View>
   );
 };

@@ -14,12 +14,11 @@ class FavesContainer extends Component {
   };
   static propTypes = {};
   componentDidMount() {
-    queryFaves();
+    return queryFaves();
   }
 
   render() {
-    console.log(queryFaves());
-    return <Faves />;
+    return queryFaves().map();
   }
 }
 
