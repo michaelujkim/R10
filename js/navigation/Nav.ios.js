@@ -21,6 +21,7 @@ const {
 } = colors;
 import { Text, View } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
+import LinearGradient from "react-native-linear-gradient";
 
 class Nav extends Component {
   render() {
@@ -50,6 +51,14 @@ class Nav extends Component {
           renderIcon={isSelected =>
             this.renderIcon(isSelected, "ios-information-circle")
           }
+          renderBackground={() => {
+            return (
+              <LinearGradient
+                colors={["#4c669f", "#3b5998", "#192f6a"]}
+                style={styles.linearGradient}
+              />
+            );
+          }}
         >
           <StackNavigation
             id="about"

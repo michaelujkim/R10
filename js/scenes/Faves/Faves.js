@@ -11,7 +11,7 @@ import {
 
 import { EventList } from "../../components/EventList";
 const Faves = () => {
-  return <Text>hello</Text>;
+  return <Text>test</Text>;
 };
 
 export default Faves;

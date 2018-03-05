@@ -1,18 +1,43 @@
-import React, {
-  Component
-} from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
-
+import {
+  Platform,
+  StyleSheet,
+  Text,
+  View,
+  ScrollView,
+  Image,
+  StatusBar
+} from "react-native";
 import About from "./About";
 import { connect } from "react-redux";
 import { fetchAbout } from "../../redux/about-reducer";
-
+import LinearGradient from "react-native-linear-gradient";
+import NavigationBar from "react-native-navbar";
+var styles = StyleSheet.create({
+  linearGradient: {
+    flex: 1,
+    paddingLeft: 15,
+    paddingRight: 15
+  }
+});
 class AboutContainer extends Component {
   static route = {
     navigationBar: {
-      title: 'About',
+      title: "About",
+      renderBackground: () => {
+        return (
+          <LinearGradient
+            colors={["#9963ea", "#cf392a"]}
+            style={styles.linearGradient}
+            start={{ x: 1, y: 0 }}
+            end={{ x: 0, y: 1 }}
+          />
+        );
+      },
+      titleStyle: { color: "#ffffff" }
     }
-  }
+  };
   static propTypes = {};
 
   constructor() {
@@ -23,19 +48,19 @@ class AboutContainer extends Component {
     };
   }
   componentDidMount() {
-    this.setState({ isLoading: true })
+    this.setState({ isLoading: true });
     this.props.dispatch(fetchAbout());
   }
 
   render() {
-
-
-    return <About list={this.props.items} isloading={this.props.isLoading}
-
-    />;
+    return (
+      <View>
+        <StatusBar barStyle="light-content" />
+        <About list={this.props.items} isloading={this.props.isLoading} />
+      </View>
+    );
   }
 }
-
 
 const mapStateToProps = state => ({
   isLoading: state.about.isLoading,
