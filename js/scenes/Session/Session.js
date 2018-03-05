@@ -8,11 +8,13 @@ import {
   ScrollView,
   Image,
   FlatList,
-  TouchableOpacity
+  TouchableOpacity,
+  NavigatorIOS
 } from "react-native";
 import { goToSpeaker } from "../../config/navigationHelpers.js";
 import Icon from "react-native-vector-icons/Ionicons";
 import { createFave, deleteFave } from "../../config/models";
+
 const Session = ({ list, speakerData }) => {
   return (
     <View>
