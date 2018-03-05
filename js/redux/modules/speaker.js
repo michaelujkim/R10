@@ -25,7 +25,7 @@ const getSpeakerError = error => ({
 
 export const fetchSpeakers = speakerId => dispatch => {
   dispatch(getSpeakerLoading());
-  fetch(`${SPEAKER_URL}?orderBy="speaker_id"&equalTo"${speakerId}"`)
+  fetch(`${SPEAKER_URL}?orderBy="speaker_id"&equalTo="${speakerId}"`)
     .then(r => r.json())
     .then(response => {
       dispatch(getSpeaker(formatDataObject(response)));

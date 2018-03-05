@@ -10,8 +10,9 @@ import {
 } from "react-native";
 
 import { EventList } from "../../components/EventList";
-const Faves = () => {
-  return <Text>test</Text>;
+const Faves = ({ data }) => {
+  console.log({ data });
+  return <Text>{data}</Text>;
 };
 
 export default Faves;

@@ -11,7 +11,7 @@ import {
 } from "react-native";
 import Faves from "./Faves";
 import { connect } from "react-redux";
-import { fetchSchedule } from "../../redux/modules/schedule";
+import { fetchFaves } from "../../redux/modules/faves";
 import { queryFaves } from "../../config/models";
 import LinearGradient from "react-native-linear-gradient";
 var styles = StyleSheet.create({
@@ -40,17 +40,23 @@ class FavesContainer extends Component {
   };
   static propTypes = {};
   componentDidMount() {
-    queryFaves();
+    this.props.dispatch(fetchFaves());
   }
 
   render() {
+    console.log(this.props.faves);
     return (
       <View>
         <StatusBar barStyle="light-content" />
-        <Faves />
+        <Faves data={this.props.faves} />
       </View>
     );
   }
 }
 
-export default FavesContainer;
+const mapStateToProps = state => ({
+  isLoading: state.faves.isLoading,
+  faves: state.faves.faves,
+  error: state.schedule.error
+});
+export default connect(mapStateToProps)(FavesContainer);
