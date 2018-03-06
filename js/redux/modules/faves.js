@@ -25,9 +25,9 @@ export const fetchFaves = () => dispatch => {
   const data = queryFaves();
   dispatch(getFavesLoading());
 
-  const faves = data.map(sessionFaves => sessionFaves.id);
+  // const faves=data.map(sessionFaves => sessionFaves.id);
 
-  dispatch(getFaves(faves));
+  dispatch(getFaves(data));
 };
 //reducer
 

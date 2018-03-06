@@ -62,6 +62,8 @@ class FavesContainer extends Component {
   };
 
   render() {
+    console.log(this.props.faves);
+    console.log(this.props.sessions);
     return (
       <View>
         <StatusBar barStyle="light-content" />

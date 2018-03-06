@@ -1,4 +1,4 @@
-import { formatSessionData } from "./helper.js"
+import { formatSessionData } from "./helper.js";
 
 //actions
 
@@ -26,9 +26,10 @@ const sessions = fetch(SCHEDULE_URL).then(r => r.json());
 
 export const fetchSchedule = () => dispatch => {
   dispatch(getScheduleLoading());
-  sessions.then(response => {
-    dispatch(getSchedule(formatSessionData(response)))
-  })
+  sessions
+    .then(response => {
+      dispatch(getSchedule(response));
+    })
     .catch(error => dispatch(getScheduleError(error)));
 };
 //reducer
@@ -46,7 +47,12 @@ export default (
       return { ...state, isLoading: true, error: "" };
     }
     case GET_SCHEDULE: {
-      return { ...state, isLoading: false, sessions: action.payload, error: "" };
+      return {
+        ...state,
+        isLoading: false,
+        sessions: action.payload,
+        error: ""
+      };
     }
     case GET_SCHEDULE_ERROR: {
       return { ...state, isLoading: false, error: action.payload };

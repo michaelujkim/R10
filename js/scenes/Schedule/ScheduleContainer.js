@@ -13,6 +13,7 @@ import Schedule from "./Schedule";
 import { connect } from "react-redux";
 import { fetchSchedule } from "../../redux/modules/schedule";
 import LinearGradient from "react-native-linear-gradient";
+import { formatSessionData } from "../../redux/modules/helper.js";
 var styles = StyleSheet.create({
   linearGradient: {
     flex: 1,
@@ -46,7 +47,10 @@ class ScheduleContainer extends Component {
     return (
       <View>
         <StatusBar barStyle="light-content" />
-        <Schedule list={this.props.sessions} isloading={this.props.isLoading} />
+        <Schedule
+          list={formatSessionData(this.props.sessions)}
+          isloading={this.props.isLoading}
+        />
       </View>
     );
   }
