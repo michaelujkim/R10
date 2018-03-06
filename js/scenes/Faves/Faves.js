@@ -8,11 +8,10 @@ import {
   ScrollView,
   Image
 } from "react-native";
-
 import { EventList } from "../../components/EventList";
+
 const Faves = ({ data }) => {
-  console.log({ data });
-  return <Text>{data}</Text>;
+  return <EventList data={data} />;
 };
 
 export default Faves;

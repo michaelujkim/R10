@@ -14,6 +14,9 @@ import { connect } from "react-redux";
 import { fetchFaves } from "../../redux/modules/faves";
 import { queryFaves } from "../../config/models";
 import LinearGradient from "react-native-linear-gradient";
+import { fetchSchedule } from "../../redux/modules/schedule";
+import { formatSessionData } from "../../redux/modules/helper.js";
+
 var styles = StyleSheet.create({
   linearGradient: {
     flex: 1,
@@ -41,14 +44,30 @@ class FavesContainer extends Component {
   static propTypes = {};
   componentDidMount() {
     this.props.dispatch(fetchFaves());
+    this.props.dispatch(fetchSchedule());
   }
+  favouriteFilter = schedule => {
+    const keys = Object.keys(this.props.faves).map(key => {
+      return this.props.faves[key].id;
+    });
+    return schedule.reduce((acc, item) => {
+      if (keys.includes(item.session_id)) {
+        item.isFave = true;
+        acc.push(item);
+      } else {
+        item.isFave = false;
+      }
+      return acc;
+    }, []);
+  };
 
   render() {
-    console.log(this.props.faves);
     return (
       <View>
         <StatusBar barStyle="light-content" />
-        <Faves data={this.props.faves} />
+        <Faves
+          data={formatSessionData(this.favouriteFilter(this.props.sessions))}
+        />
       </View>
     );
   }
@@ -57,6 +76,8 @@ class FavesContainer extends Component {
 const mapStateToProps = state => ({
   isLoading: state.faves.isLoading,
   faves: state.faves.faves,
-  error: state.schedule.error
+  error: state.schedule.error,
+
+  sessions: state.schedule.sessions
 });
 export default connect(mapStateToProps)(FavesContainer);
