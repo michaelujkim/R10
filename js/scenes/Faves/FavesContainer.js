@@ -69,6 +69,7 @@ class FavesContainer extends Component {
         <StatusBar barStyle="light-content" />
         <Faves
           data={formatSessionData(this.favouriteFilter(this.props.sessions))}
+          currentUID={this.props.currentUID}
         />
       </View>
     );
@@ -79,7 +80,7 @@ const mapStateToProps = state => ({
   isLoading: state.faves.isLoading,
   faves: state.faves.faves,
   error: state.schedule.error,
-
+  currentUID: state.navigation.currentNavigatorUID,
   sessions: state.schedule.sessions
 });
 export default connect(mapStateToProps)(FavesContainer);

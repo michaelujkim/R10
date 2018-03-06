@@ -19,17 +19,16 @@ export default class About extends Component {
       Animated.parallel([
         Animated.timing(this.state.opacity, {
           toValue: 1,
-          duration: 1000,
+          duration: 500,
           easing: Easing.elastic(0.4)
         }),
 
         Animated.timing(this.state.height, {
           toValue: 200,
-          duration: 1000,
+          duration: 500,
           easing: Easing.elastic(0.4)
         })
       ]).start(() => {
-        this._startAnimation();
         this.setState({ open: true });
       });
     } else {
@@ -68,12 +67,25 @@ export default class About extends Component {
           source={require("../../assets/images/r10_logo.png/")}
           style={{ height: 100, width: 320 }}
         />
+        <View>
+          <Text>
+            R10 is a conference that focuses on just about any topic related to
+            dev.
+          </Text>
+        </View>
+        <View>
+          <Text>Date & Venue</Text>
+          <Text>
+            The R10 conference will take plce on Tuesday, June 27, 2017 in
+            Vancouver,BC.
+          </Text>
+        </View>
         <View style={styles.aboutItem}>
           {this.props.list.map(item => {
             return (
               <View key={item.title}>
                 <TouchableHighlight
-                  onPress={() => {
+                  onPress={key => {
                     this._startAnimation();
                   }}
                 >
@@ -85,6 +97,7 @@ export default class About extends Component {
                     height: this.state.height,
                     opacity: this.state.opacity
                   }}
+                  key={item.title}
                 >
                   <Text style={{ fontFamily: "Montserrat" }}>
                     {item.description}
