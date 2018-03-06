@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 import {
   Platform,
@@ -8,38 +8,93 @@ import {
   ScrollView,
   Image,
   Animated,
-  TouchableHighlight
+  TouchableHighlight,
+  Easing
 } from "react-native";
 
 import { styles } from "./styles";
-const About = ({ list, isLoading }) => (
-  <ScrollView>
-    <Image
-      source={require("../../assets/images/r10_logo.png/")}
-      style={{ height: 100, width: 320 }}
-    />
-    <View style={styles.container}>
-      {!isLoading &&
-        list.map(item => {
-          return (
-            <View key={item.title}>
-              <TouchableHighlight>
-                <Text style={styles.heading}>{item.title}</Text>
-              </TouchableHighlight>
-              <Animated.View
-                style={{
-                  height: 0,
-                  opacity: 0
-                }}
-              >
-                <Text style={{ fontFamily: "Montserrat" }}>
-                  {item.description}
-                </Text>
-              </Animated.View>
-            </View>
-          );
-        })}
-    </View>
-  </ScrollView>
-);
-export default About;
+export default class About extends Component {
+  _startAnimation() {
+    if (this.state.open == false) {
+      Animated.parallel([
+        Animated.timing(this.state.opacity, {
+          toValue: 1,
+          duration: 1000,
+          easing: Easing.elastic(0.4)
+        }),
+
+        Animated.timing(this.state.height, {
+          toValue: 200,
+          duration: 1000,
+          easing: Easing.elastic(0.4)
+        })
+      ]).start(() => {
+        this._startAnimation();
+        this.setState({ open: true });
+      });
+    } else {
+      Animated.parallel([
+        Animated.timing(this.state.opacity, {
+          toValue: 0,
+          duration: 1000,
+          easing: Easing.elastic(0.4)
+        }),
+
+        Animated.timing(this.state.height, {
+          toValue: 0,
+          duration: 1000,
+          easing: Easing.elastic(0.4)
+        })
+      ]).start(() => {
+        this.setState({ open: false });
+      });
+    }
+  }
+  static propTypes = {};
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      height: new Animated.Value(0),
+      opacity: new Animated.Value(0),
+      open: false
+    };
+  }
+
+  render() {
+    return (
+      <ScrollView>
+        <Image
+          source={require("../../assets/images/r10_logo.png/")}
+          style={{ height: 100, width: 320 }}
+        />
+        <View style={styles.aboutItem}>
+          {this.props.list.map(item => {
+            return (
+              <View key={item.title}>
+                <TouchableHighlight
+                  onPress={() => {
+                    this._startAnimation();
+                  }}
+                >
+                  <Text style={styles.heading}>{item.title}</Text>
+                </TouchableHighlight>
+                <Animated.View
+                  style={{
+                    position: "relative",
+                    height: this.state.height,
+                    opacity: this.state.opacity
+                  }}
+                >
+                  <Text style={{ fontFamily: "Montserrat" }}>
+                    {item.description}
+                  </Text>
+                </Animated.View>
+              </View>
+            );
+          })}
+        </View>
+      </ScrollView>
+    );
+  }
+}

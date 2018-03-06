@@ -24,13 +24,12 @@ const styles = {
 };
 
 const titleConfig = {
-  title: "Hello, world"
+  title: "Session"
 };
 
 class SessionContainer extends Component {
   static propTypes = {};
   componentDidMount() {
-    console.log(this.props.speakers);
     fetch("https://r10app-95fea.firebaseio.com/sessions.json").then(r =>
       r.json()
     );

@@ -9,6 +9,7 @@ import {
   Image,
   FlatList
 } from "react-native";
+import Icon from "react-native-vector-icons/Ionicons";
 
 const Speaker = ({ list }) => {
   console.log(list);
