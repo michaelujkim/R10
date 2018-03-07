@@ -24,7 +24,7 @@ export default class About extends Component {
         }),
 
         Animated.timing(this.state.height, {
-          toValue: 200,
+          toValue: 100,
           duration: 500,
           easing: Easing.elastic(0.4)
         })
@@ -35,13 +35,13 @@ export default class About extends Component {
       Animated.parallel([
         Animated.timing(this.state.opacity, {
           toValue: 0,
-          duration: 1000,
+          duration: 500,
           easing: Easing.elastic(0.4)
         }),
 
         Animated.timing(this.state.height, {
           toValue: 0,
-          duration: 1000,
+          duration: 500,
           easing: Easing.elastic(0.4)
         })
       ]).start(() => {
@@ -76,7 +76,7 @@ export default class About extends Component {
         <View>
           <Text>Date & Venue</Text>
           <Text>
-            The R10 conference will take plce on Tuesday, June 27, 2017 in
+            The R10 conference will take place on Tuesday, June 27, 2017 in
             Vancouver,BC.
           </Text>
         </View>
@@ -94,10 +94,9 @@ export default class About extends Component {
                 <Animated.View
                   style={{
                     position: "relative",
-                    height: this.state.height,
+                    height: `${this.state.height}%`,
                     opacity: this.state.opacity
                   }}
-                  key={item.title}
                 >
                   <Text style={{ fontFamily: "Montserrat" }}>
                     {item.description}

@@ -16,6 +16,7 @@ import { connect } from "react-redux";
 import { fetchSchedule } from "../../redux/modules/schedule";
 import { fetchSpeakers } from "../../redux/modules/speaker";
 import NavigationBar from "react-native-navbar";
+import LinearGradient from "react-native-linear-gradient";
 let context = this;
 const styles = {
   container: {
@@ -25,6 +26,9 @@ const styles = {
 
 const titleConfig = {
   title: "Session"
+};
+const containerConfig = {
+  backgroundColor: "#9963ea"
 };
 
 class SessionContainer extends Component {
@@ -40,12 +44,25 @@ class SessionContainer extends Component {
 
   render() {
     const leftButtonConfig = {
-      title: "back",
+      title: "<",
       handler: () => this.props.navigator.pop()
     };
     return (
       <View>
-        <NavigationBar title={titleConfig} leftButton={leftButtonConfig} />
+        <LinearGradient
+          colors={["#9963ea", "#cf392a"]}
+          style={styles.linearGradient}
+          start={{ x: 1, y: 0 }}
+          end={{ x: 0, y: 1 }}
+        >
+          <View>
+            <NavigationBar
+              title={titleConfig}
+              leftButton={leftButtonConfig}
+              containerStyle={containerConfig}
+            />
+          </View>
+        </LinearGradient>
         <Session
           list={this.props.route.params.sessionData}
           speakerData={this.props.speakers}

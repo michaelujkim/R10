@@ -12,6 +12,7 @@ import {
 import { formatUnixDate } from "../redux/modules/helper";
 import Icon from "react-native-vector-icons/Ionicons";
 import { goToSession } from "../config/navigationHelpers";
+import { createFave, deleteFave } from "../config/models";
 
 export const EventList = ({ data, isLoading }) => {
   return (
@@ -24,13 +25,14 @@ export const EventList = ({ data, isLoading }) => {
             }}
           >
             <Text>{item.title}</Text>
-            {Platform.OS === "ios" && (
-              <Icon style={{ color: "red" }} size={24} name={"ios-heart"} />
-            )}
-            {Platform.OS === "android" && (
-              <Icon style={{ color: "red" }} size={24} name={"md-heart"} />
-            )}
           </TouchableOpacity>
+
+          {Platform.OS === "ios" && (
+            <Icon style={{ color: "red" }} size={24} name={"ios-heart"} />
+          )}
+          {Platform.OS === "android" && (
+            <Icon style={{ color: "red" }} size={24} name={"md-heart"} />
+          )}
         </View>
       )}
       keyExtractor={(item, index) => index}

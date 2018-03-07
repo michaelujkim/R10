@@ -13,6 +13,7 @@ import Schedule from "./Schedule";
 import { connect } from "react-redux";
 import { fetchSchedule } from "../../redux/modules/schedule";
 import LinearGradient from "react-native-linear-gradient";
+
 import { formatSessionData } from "../../redux/modules/helper.js";
 var styles = StyleSheet.create({
   linearGradient: {
