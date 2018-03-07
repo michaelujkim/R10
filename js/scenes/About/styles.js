@@ -11,6 +11,10 @@ export const styles = StyleSheet.create({
     paddingTop: 20,
     paddingBottom: 20,
     fontWeight: "bold",
-    fontSize: 25
+    fontSize: 15,
+    color: "#9963ea"
+  },
+  paragraph: {
+    padding: 20
   }
 });

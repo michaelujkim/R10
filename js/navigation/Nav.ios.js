@@ -45,6 +45,18 @@ class Nav extends Component {
           />
         </TabNavigationItem>
         <TabNavigationItem
+          id="faves"
+          title="Faves"
+          renderTitle={this.renderTitle}
+          renderIcon={isSelected => this.renderIcon(isSelected, "ios-heart")}
+        >
+          <StackNavigation
+            id="faves"
+            navigatorUID="faves"
+            initialRoute={Router.getRoute("faves")}
+          />
+        </TabNavigationItem>
+        <TabNavigationItem
           id="about"
           title="About"
           renderTitle={this.renderTitle}
@@ -64,18 +76,6 @@ class Nav extends Component {
             id="about"
             navigatorUID="about"
             initialRoute={Router.getRoute("about")}
-          />
-        </TabNavigationItem>
-        <TabNavigationItem
-          id="faves"
-          title="Faves"
-          renderTitle={this.renderTitle}
-          renderIcon={isSelected => this.renderIcon(isSelected, "ios-heart")}
-        >
-          <StackNavigation
-            id="faves"
-            navigatorUID="faves"
-            initialRoute={Router.getRoute("faves")}
           />
         </TabNavigationItem>
       </TabNavigation>
