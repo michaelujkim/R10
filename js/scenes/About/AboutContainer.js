@@ -55,7 +55,7 @@ class AboutContainer extends Component {
   render() {
     return (
       <View>
-        <StatusBar backgroundColor="blue" barStyle="light-content" />
+        <StatusBar barStyle="light-content" />
         <About list={this.props.items} isloading={this.props.isLoading} />
       </View>
     );
