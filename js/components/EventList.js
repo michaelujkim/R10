@@ -13,31 +13,34 @@ import { formatUnixDate } from "../redux/modules/helper";
 import Icon from "react-native-vector-icons/Ionicons";
 import { goToSession } from "../config/navigationHelpers";
 import { createFave, deleteFave } from "../config/models";
+import { styles } from "./styles";
 
 export const EventList = ({ data, isLoading }) => {
   return (
     <SectionList
       renderItem={({ item }) => (
-        <View>
+        <View style={styles.entryContainer}>
           <TouchableOpacity
             onPress={() => {
               goToSession("schedule", item);
             }}
           >
-            <Text>{item.title}</Text>
+            <Text style={styles.entry}>{item.title}</Text>
           </TouchableOpacity>
-
-          {Platform.OS === "ios" && (
-            <Icon style={{ color: "red" }} size={24} name={"ios-heart"} />
-          )}
-          {Platform.OS === "android" && (
-            <Icon style={{ color: "red" }} size={24} name={"md-heart"} />
-          )}
+          <View style={styles.location}>
+            <Text>{item.location}</Text>
+            {Platform.OS === "ios" && (
+              <Icon style={{ color: "red" }} size={24} name={"ios-heart"} />
+            )}
+            {Platform.OS === "android" && (
+              <Icon style={{ color: "red" }} size={24} name={"md-heart"} />
+            )}
+          </View>
         </View>
       )}
       keyExtractor={(item, index) => index}
       renderSectionHeader={({ section }) => (
-        <Text>{formatUnixDate(section.title)}</Text>
+        <Text style={styles.time}>{formatUnixDate(section.title)}</Text>
       )}
       sections={data}
       renderIcon={isSelected => this.renderIcon(isSelected, "ios-heart")}

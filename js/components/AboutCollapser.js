@@ -24,6 +24,16 @@ export default class AboutCollapser extends Component {
           easing: Easing.elastic(0.4)
         }),
 
+        Animated.timing(this.state.plusWidth, {
+          toValue: 0,
+          duration: 500,
+          easing: Easing.elastic(0.4)
+        }),
+        Animated.timing(this.state.minusWidth, {
+          toValue: 15,
+          duration: 500,
+          easing: Easing.elastic(0.4)
+        }),
         Animated.timing(this.state.height, {
           toValue: "auto",
           duration: 500,
@@ -44,6 +54,16 @@ export default class AboutCollapser extends Component {
           toValue: 0,
           duration: 500,
           easing: Easing.elastic(0.4)
+        }),
+        Animated.timing(this.state.plusWidth, {
+          toValue: 15,
+          duration: 500,
+          easing: Easing.elastic(0.4)
+        }),
+        Animated.timing(this.state.minusWidth, {
+          toValue: 0,
+          duration: 500,
+          easing: Easing.elastic(0.4)
         })
       ]).start(() => {
         this.setState({ open: false, height: new Animated.Value(0) });
@@ -57,7 +77,9 @@ export default class AboutCollapser extends Component {
     this.state = {
       height: new Animated.Value(0),
       opacity: new Animated.Value(0),
-      open: false
+      open: false,
+      minusWidth: new Animated.Value(0),
+      plusWidth: new Animated.Value(15)
     };
   }
 
@@ -68,8 +90,17 @@ export default class AboutCollapser extends Component {
           onPress={key => {
             this._startAnimation();
           }}
+          underlayColor={"#9963ea"}
         >
-          <Text style={styles.heading}>{this.props.data.title}</Text>
+          <View style={{ flex: 1, flexDirection: "row" }}>
+            <Animated.View style={{ width: this.state.plusWidth }}>
+              <Text style={styles.heading}>+ </Text>
+            </Animated.View>
+            <Animated.View style={{ width: this.state.minusWidth }}>
+              <Text style={styles.heading}>- </Text>
+            </Animated.View>
+            <Text style={styles.heading}>{this.props.data.title}</Text>
+          </View>
         </TouchableHighlight>
         <Animated.View
           style={{

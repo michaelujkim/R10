@@ -1,4 +1,3 @@
-
 export const colors = {
   black: "#000000",
   nearBlack: "#111111",
@@ -15,6 +14,5 @@ export const colors = {
 
 export const typography = {
   fontMainLight: "Montserrat-Light",
-  fontMain: "Montserrat",
-}
-
+  fontMain: "Montserrat"
+};
