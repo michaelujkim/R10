@@ -16,8 +16,12 @@ import { createFave, deleteFave } from "../config/models";
 import { styles } from "./styles";
 
 export const EventList = ({ data, isLoading, faves }) => {
+  const keys = Object.keys(faves).map(key => {
+    return faves[key].id;
+  });
+
   return (
-    console.log(faves),
+    console.log(data),
     (
       <SectionList
         renderItem={({ item }) => (
@@ -31,11 +35,11 @@ export const EventList = ({ data, isLoading, faves }) => {
             </TouchableOpacity>
             <View style={styles.location}>
               <Text>{item.location}</Text>
-              {/* {faves.includes(item.sessionId) ? (
-              <Icon style={{ color: "red" }} size={24} name={"ios-heart"} />
-            ) : (
-              <Text />
-            )} */}
+              {keys.includes(item.session_id) ? (
+                <Icon style={{ color: "red" }} size={24} name={"ios-heart"} />
+              ) : (
+                <Text />
+              )}
             </View>
           </View>
         )}
@@ -49,11 +53,3 @@ export const EventList = ({ data, isLoading, faves }) => {
     )
   );
 };
-// displayHeart(){
-//   if(faves.includes(item.sessionId)){
-// return
-// <Icon style={{ color: "red" }} size={24} name={"ios-heart"} />}
-// }else{
-//   return
-//   <Text></Text>
-// }

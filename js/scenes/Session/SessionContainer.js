@@ -15,6 +15,7 @@ import Session from "./Session";
 import { connect } from "react-redux";
 import { fetchSchedule } from "../../redux/modules/schedule";
 import { fetchSpeakers } from "../../redux/modules/speaker";
+import { fetchFaves } from "../../redux/modules/faves";
 import NavigationBar from "react-native-navbar";
 import LinearGradient from "react-native-linear-gradient";
 
@@ -49,6 +50,7 @@ class SessionContainer extends Component {
     this.props.dispatch(
       fetchSpeakers(this.props.route.params.sessionData.speaker)
     );
+    this.props.dispatch(fetchFaves());
   }
 
   render() {
@@ -61,6 +63,7 @@ class SessionContainer extends Component {
         <Session
           list={this.props.route.params.sessionData}
           speakerData={this.props.speakers}
+          faves={this.props.faves}
         />
       </View>
     );
@@ -70,7 +73,8 @@ class SessionContainer extends Component {
 const mapStateToProps = state => ({
   isLoading: state.speakers.isLoading,
   speakers: state.speakers.speakers,
-  error: state.speakers.error
+  error: state.speakers.error,
+  faves: state.faves.faves
 });
 
 export default connect(mapStateToProps)(SessionContainer);

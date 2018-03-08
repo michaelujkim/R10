@@ -15,11 +15,40 @@ import { goToSpeaker } from "../../config/navigationHelpers.js";
 import Icon from "react-native-vector-icons/Ionicons";
 import { createFave, deleteFave } from "../../config/models";
 
-const Session = ({ list, speakerData }) => {
+const Session = ({ list, speakerData, faves }) => {
+  const keys = Object.keys(faves).map(key => {
+    return faves[key].id;
+  });
   return (
     <View>
       <Text>{list.location}</Text>
+      {keys.includes(list.session_id) ? (
+        <Icon style={{ color: "red" }} size={24} name={"ios-heart"} />
+      ) : (
+        <Text />
+      )}
       <Text>{list.description}</Text>
+      {keys.includes(list.session_id) ? (
+        <TouchableOpacity
+          onPress={() => {
+            deleteFave(list.session_id);
+          }}
+        >
+          <View>
+            <Text>Remove from faves</Text>
+          </View>
+        </TouchableOpacity>
+      ) : (
+        <TouchableOpacity
+          onPress={() => {
+            createFave(list.session_id);
+          }}
+        >
+          <View>
+            <Text>Add to faves</Text>
+          </View>
+        </TouchableOpacity>
+      )}
       <TouchableOpacity
         onPress={() => {
           goToSpeaker("speaker");
@@ -28,30 +57,6 @@ const Session = ({ list, speakerData }) => {
         <Text>{speakerData.name}</Text>
       </TouchableOpacity>
       <Text>{list.session_id}</Text>
-      <TouchableOpacity
-        onPress={() => {
-          createFave(list.session_id);
-        }}
-      >
-        {Platform.OS === "ios" && (
-          <Icon style={{ color: "red" }} size={24} name={"ios-heart"} />
-        )}
-        {Platform.OS === "android" && (
-          <Icon style={{ color: "red" }} size={24} name={"md-heart"} />
-        )}
-      </TouchableOpacity>
-      <TouchableOpacity
-        onPress={() => {
-          deleteFave(list.session_id);
-        }}
-      >
-        {Platform.OS === "ios" && (
-          <Icon style={{ color: "black" }} size={24} name={"ios-close"} />
-        )}
-        {Platform.OS === "android" && (
-          <Icon style={{ color: "black" }} size={24} name={"md-close"} />
-        )}
-      </TouchableOpacity>
     </View>
   );
 };
