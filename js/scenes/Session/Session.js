@@ -56,7 +56,6 @@ const Session = ({ list, speakerData, faves }) => {
       >
         <Text>{speakerData.name}</Text>
       </TouchableOpacity>
-      <Text>{list.session_id}</Text>
     </View>
   );
 };
