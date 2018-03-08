@@ -11,9 +11,9 @@ import {
 
 import { styles } from "./styles";
 import { EventList } from "../../components/EventList";
-const Schedule = ({ list, isLoading }) => {
+const Schedule = ({ list, isLoading, faves }) => {
   console.log(list);
-  return <EventList data={list} />;
+  return <EventList data={list} faves={faves} />;
 };
 
 export default Schedule;

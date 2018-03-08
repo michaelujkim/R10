@@ -12,6 +12,7 @@ import {
 import Schedule from "./Schedule";
 import { connect } from "react-redux";
 import { fetchSchedule } from "../../redux/modules/schedule";
+import { fetchFaves } from "../../redux/modules/faves";
 import LinearGradient from "react-native-linear-gradient";
 
 import { formatSessionData } from "../../redux/modules/helper.js";
@@ -42,6 +43,7 @@ class ScheduleContainer extends Component {
   static propTypes = {};
   componentDidMount() {
     this.props.dispatch(fetchSchedule());
+    this.props.dispatch(fetchFaves());
   }
 
   render() {
@@ -51,6 +53,7 @@ class ScheduleContainer extends Component {
         <Schedule
           list={formatSessionData(this.props.sessions)}
           isloading={this.props.isLoading}
+          faves={this.props.faves}
         />
       </View>
     );
@@ -60,7 +63,8 @@ class ScheduleContainer extends Component {
 const mapStateToProps = state => ({
   isLoading: state.schedule.isLoading,
   sessions: state.schedule.sessions,
-  error: state.schedule.error
+  error: state.schedule.error,
+  faves: state.faves.faves
 });
 
 export default connect(mapStateToProps)(ScheduleContainer);

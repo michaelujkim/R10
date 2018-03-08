@@ -27,7 +27,7 @@ export default class About extends Component {
       <ScrollView>
         <Image
           source={require("../../assets/images/r10_logo.png/")}
-          style={{ height: 100, width: 320 }}
+          style={{ resizeMode: "contain", height: 100, width: 320 }}
         />
         <View style={styles.paragraph}>
           <Text>

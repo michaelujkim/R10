@@ -15,35 +15,45 @@ import { goToSession } from "../config/navigationHelpers";
 import { createFave, deleteFave } from "../config/models";
 import { styles } from "./styles";
 
-export const EventList = ({ data, isLoading }) => {
+export const EventList = ({ data, isLoading, faves }) => {
   return (
-    <SectionList
-      renderItem={({ item }) => (
-        <View style={styles.entryContainer}>
-          <TouchableOpacity
-            onPress={() => {
-              goToSession("schedule", item);
-            }}
-          >
-            <Text style={styles.entry}>{item.title}</Text>
-          </TouchableOpacity>
-          <View style={styles.location}>
-            <Text>{item.location}</Text>
-            {Platform.OS === "ios" && (
+    console.log(faves),
+    (
+      <SectionList
+        renderItem={({ item }) => (
+          <View style={styles.entryContainer}>
+            <TouchableOpacity
+              onPress={() => {
+                goToSession("schedule", item);
+              }}
+            >
+              <Text style={styles.entry}>{item.title}</Text>
+            </TouchableOpacity>
+            <View style={styles.location}>
+              <Text>{item.location}</Text>
+              {/* {faves.includes(item.sessionId) ? (
               <Icon style={{ color: "red" }} size={24} name={"ios-heart"} />
-            )}
-            {Platform.OS === "android" && (
-              <Icon style={{ color: "red" }} size={24} name={"md-heart"} />
-            )}
+            ) : (
+              <Text />
+            )} */}
+            </View>
           </View>
-        </View>
-      )}
-      keyExtractor={(item, index) => index}
-      renderSectionHeader={({ section }) => (
-        <Text style={styles.time}>{formatUnixDate(section.title)}</Text>
-      )}
-      sections={data}
-      renderIcon={isSelected => this.renderIcon(isSelected, "ios-heart")}
-    />
+        )}
+        keyExtractor={(item, index) => index}
+        renderSectionHeader={({ section }) => (
+          <Text style={styles.time}>{formatUnixDate(section.title)}</Text>
+        )}
+        sections={data}
+        renderIcon={isSelected => this.renderIcon(isSelected, "ios-heart")}
+      />
+    )
   );
 };
+// displayHeart(){
+//   if(faves.includes(item.sessionId)){
+// return
+// <Icon style={{ color: "red" }} size={24} name={"ios-heart"} />}
+// }else{
+//   return
+//   <Text></Text>
+// }
